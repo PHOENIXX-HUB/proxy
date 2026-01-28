@@ -1,19 +1,13 @@
 export default async function handler(req, res) {
   try {
-    const response = await fetch(
-      "https://raw.githubusercontent.com/changelog-modul/PHOENIXX-HUB/refs/heads/main/start",
-      {
-        headers: {
-          "User-Agent": "Vercel-Proxy"
-        }
-      }
+    const r = await fetch(
+      "https://raw.githubusercontent.com/changelog-modul/PHOENIXX-HUB/refs/heads/main/start"
     );
-
-    const text = await response.text();
+    const t = await r.text();
 
     res.setHeader("Content-Type", "text/plain");
-    res.status(200).send(text);
-  } catch (err) {
-    res.status(500).send("-- Proxy error: " + err.message);
+    res.status(200).send(t);
+  } catch (e) {
+    res.status(500).send("-- proxy error");
   }
 }
